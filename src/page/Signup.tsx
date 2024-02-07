@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../config/firebase";
@@ -10,20 +10,23 @@ const Signup = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handelSubmit = async (e) => {
+  const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       setLoading(true);
       const user = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(auth.currentUser, {
-        displayName: email.split("@")[0],
-      })
+      const userCurr = auth.currentUser;
+      if (userCurr) {
+        await updateProfile(userCurr, {
+          displayName: email.split("@")[0],
+        });
+      }
       if (user) {
         toast.success("Account created successfully");
         setLoading(false);
         navigate("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.message);
     }
   };

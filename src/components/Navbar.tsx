@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUserData, setUser } from "../redux/UserSlice";
-import { signOut } from "firebase/auth";
+import { signOut, updateProfile } from "firebase/auth";
 import { UserTypes } from "../config/types";
 // import { IoMdMenu } from "react-icons/io";
 
@@ -11,12 +11,16 @@ const Navbar = () => {
   const [width, setWidth] = useState(0);
   // const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  const user = useSelector((state: { User: { user: UserTypes } }) => state.User);
+  const user = useSelector(
+    (state: { User: { user: UserTypes } }) => state.User
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     const subscribe = auth.onAuthStateChanged((user) => {
-      user.displayName = user.email.split("@")[0] || '';
+      updateProfile(auth.currentUser!, {
+        displayName: user?.email?.split("@")[0] ?? "Unknown",
+      })
       dispatch(setUser(user));
     });
     return subscribe;
@@ -24,7 +28,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setWidth(window.innerWidth);
-    console.log(width)
+    console.log(width);
   }, []);
 
   const handelLogout = async () => {
@@ -57,16 +61,16 @@ const Navbar = () => {
         </div>
         </>
       ) : ( */}
-        <div className="flex gap-3 items-center">
-          <Link to="/">Home</Link>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/addblog">Create</Link>
-          {user.user && user.user ? (
-            <button onClick={handelLogout}>Logout</button>
-          ) : (
-            <Link to={"/login"}>Login</Link>
-          )}
-        </div>
+      <div className="flex gap-3 items-center">
+        <Link to="/">Home</Link>
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/addblog">Create</Link>
+        {user.user && user.user ? (
+          <button onClick={handelLogout}>Logout</button>
+        ) : (
+          <Link to={"/login"}>Login</Link>
+        )}
+      </div>
       {/* )} */}
     </nav>
   );

@@ -8,7 +8,7 @@ import { store } from "./redux/Store.js";
 import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { blogApi } from "./services/blogApi.js";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ApiProvider api={blogApi}>

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import {getAuth} from 'firebase/auth'
+// import { ImportMeta } from "./types";
 
 const {
     VITE_APP_FIREBASE_API,
@@ -9,7 +10,7 @@ const {
     VITE_APP_FIREBASE_STORAGE_BUCKET,
     VITE_APP_FIREBASE_MESSAGE_SENDER_ID,
     VITE_APP_FIREBASE_APP_ID,
-  } = import.meta.env;
+  } = import.meta.env
   
   const firebaseConfig = {
     apiKey: VITE_APP_FIREBASE_API,

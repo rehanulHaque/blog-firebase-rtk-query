@@ -21,13 +21,13 @@ const BlogCard = ({
   return (
     <div className="p-4 shadow-md card">
       <Link to={`/blog/${id}`}>
-        <h1 className="text-xl font-semibold">{title}</h1>
+        <h1 className="text-sm xl:text-xl md:text-xl font-semibold text-wrap">{title}</h1>
         <small className="text-gray-400">Author: {author.split("@")[0]}</small>
         {dashboard && dashboard ? (
-          <p
+          <div
             dangerouslySetInnerHTML={{ __html: body.substring(0, 300) }}
-            className="mt-3"
-          ></p>
+            className="mt-3 prose text-wrap text-sm xl:text-xl md:text-xl"
+          ></div>
         ) : null}
         {!dashboard ? (
           <p

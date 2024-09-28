@@ -13,7 +13,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../config/firebase";
 import {AddPostTypes} from '../config/types'
-// import { updateEmail, updateProfile } from "firebase/auth";
 
 export const blogApi = createApi({
   reducerPath: "blogApi",

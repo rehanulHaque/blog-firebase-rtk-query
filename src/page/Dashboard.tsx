@@ -6,8 +6,17 @@ import { Link } from "react-router-dom";
 import { UserTypes, postsTypes } from "../config/types";
 
 const Blog = () => {
-  const user = useSelector((state: { User: { user: UserTypes } }) => state.User);
+  const user = useSelector(
+    (state: { User: { user: UserTypes } }) => state.User
+  );
   const { data, isFetching } = useGetMyPostsQuery(user.user.uid);
+  const isVerified = user.user.emailVerified;
+  if (!isVerified) {
+    return <div className="mt-8 md:mt-16 lg:mt-20">
+      <h1 className="text-center">Please verify your email</h1>
+      <button className="px-4 py-2 bg-black text-white rounded-md w-full mt-4"><Link to={"/verify"}>Resend Email</Link></button>
+    </div>;
+  }
   if (isFetching) return "Loading...";
 
   return (
@@ -23,7 +32,9 @@ const Blog = () => {
       </div>
       <div className=" block mt-8">
         {data &&
-          data.map((post: postsTypes) => <BlogCard key={post.id} {...post} dashboard />)}
+          data.map((post: postsTypes) => (
+            <BlogCard key={post.id} {...post} dashboard />
+          ))}
       </div>
     </main>
   );

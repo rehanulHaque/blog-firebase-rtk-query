@@ -20,6 +20,7 @@ export interface UserTypes {
     email: string;
     uid: string;
     photoUrl: string;
+    emailVerified: boolean
 }
 
 export interface ImportMeta {

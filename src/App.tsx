@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./page/Profile";
 import EditBlog from "./page/EditBlog";
 import ProtectAuth from "./components/ProtectAuth";
+import Verify from "./page/Verify";
 
 const App = () => {
   return (
@@ -21,6 +22,14 @@ const App = () => {
       <div className="body">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route
+          path="/verify"
+          element={
+            <ProtectedRoute>
+              <Verify />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/dashboard"
           element={

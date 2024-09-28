@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ const Signup = () => {
     try {
       setLoading(true);
       const user = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(user.user);
       const userCurr = auth.currentUser;
       if (userCurr) {
         await updateProfile(userCurr, {
@@ -27,7 +28,7 @@ const Signup = () => {
         navigate("/");
       }
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error("Failed to create account");
     }
   };
   return (
@@ -56,7 +57,7 @@ const Signup = () => {
           disabled={loading}
           className="border border-black px-4 py-2 w-full rounded-md bg-black text-white disabled:bg-gray-700"
         >
-          Login
+          Sign up
         </button>
         <p className="text-center mt-3">
           already have an account?{" "}

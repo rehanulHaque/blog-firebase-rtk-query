@@ -35,7 +35,7 @@ const AddBlog = () => {
     }
   };
   return (
-    <main className="w-full  mb-8">
+    <main className="w-full px-5 mb-8">
       <div className="">
         <h1 className="text-3xl font-semibold my-2">Create New Post</h1>
         <form className="w-full" onSubmit={handleSubmit}>

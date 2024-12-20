@@ -19,7 +19,7 @@ const BlogCard = ({
     navigate('/')
   }
   return (
-    <div className="p-4 shadow-md card">
+    <div className="p-4 shadow-md card bg-white rounded-md">
       <Link to={`/blog/${id}`}>
         <h1 className="text-sm xl:text-xl md:text-xl font-semibold text-wrap">{title}</h1>
         <small className="text-gray-400">Author: {author.split("@")[0]}</small>

@@ -6,6 +6,7 @@ import {
 } from "../services/blogApi";
 import ReactQuill from "react-quill";
 import { toast } from "react-toastify";
+import Loader from "@/components/Loader";
 
 const EditBlog = () => {
   const [title, setTitle] = useState("");
@@ -34,7 +35,7 @@ const EditBlog = () => {
       toast.error("Please edit title and body");
     }
   };
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader/>;
   return (
     <main className="w-full mb-8">
       <div className="">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import { postsTypes } from "../config/types";
 import { useGetPostsQuery } from "../services/blogApi";
-import { Button } from "@/components/ui/button";
+import Loader from "@/components/Loader";
 
 const sideBarLinks = [
   {
@@ -23,17 +23,22 @@ const sideBarLinks = [
   {
     id: 4,
     name: "Reading List",
-    link: "/",
+    link: "/readinglist",
+  },
+  {
+    id: 5,
+    name: "Pricing",
+    link: "/pricing",
   },
 ];
 
 const Home = () => {
   const { data, isFetching } = useGetPostsQuery("");
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader/>;
   return (
     <main className="grid grid-cols-6 bg-slate-100 min-h-screen w-full p-4">
       {/* SideBar */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         {sideBarLinks.map((link) => (
           <div key={link.id} className="">
             <Link to={link.link} className="">{link.name}</Link>

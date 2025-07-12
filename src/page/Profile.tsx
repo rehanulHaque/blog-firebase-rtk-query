@@ -19,7 +19,7 @@ const Profile = () => {
   };
 
   return (
-    <main className="">
+    <main className="w-full px-4 md:px-0 md:max-w-7xl md:mx-auto">
       <div className="border-b-2 flex justify-between items-center">
         <h1 className="text-xl font-semibold mt-7 px-3 pb-2">Profile</h1>
         <button

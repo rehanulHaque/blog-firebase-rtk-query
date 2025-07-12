@@ -4,6 +4,7 @@ import BlogCard from "../components/BlogCard";
 import { FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { UserTypes, postsTypes } from "../config/types";
+import Loader from "@/components/Loader";
 
 const Blog = () => {
   const user = useSelector(
@@ -17,10 +18,10 @@ const Blog = () => {
       <button className="px-4 py-2 bg-black text-white rounded-md w-full mt-4"><Link to={"/verify"}>Resend Email</Link></button>
     </div>;
   }
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loader/>;
 
   return (
-    <main className="">
+    <main className="w-full px-4 md:px-0 md:max-w-7xl md:mx-auto">
       <div className="flex justify-between mt-8 pb-2 border-b-2">
         <h1 className="text-2xl font-bold">My Blogs</h1>
         <Link

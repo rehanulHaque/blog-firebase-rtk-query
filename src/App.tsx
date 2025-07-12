@@ -13,10 +13,12 @@ import Profile from "./page/Profile";
 import EditBlog from "./page/EditBlog";
 import ProtectAuth from "./components/ProtectAuth";
 import Verify from "./page/Verify";
+import Pricing from "./page/Pricing";
+import Reading from "./page/Reading";
 
 const App = () => {
   return (
-    <>
+    <main className="bg-slate-100 min-h-screen">
       <Navbar />
       <ToastContainer />
       <div className="body">
@@ -79,9 +81,23 @@ const App = () => {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/readinglist"
+          element={
+            <ProtectedRoute>
+              <Reading />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/pricing"
+          element={
+              <Pricing />
+          }
+        />
       </Routes>
       </div>
-    </>
+    </main>
   );
 };
 

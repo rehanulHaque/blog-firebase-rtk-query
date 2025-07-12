@@ -46,30 +46,14 @@ const Navbar = () => {
     navigate("/login");
   };
   return (
-    // <nav className="flex w-full p-4 justify-between shadow-md relative">
-    //   <div className="text-lg xl:text md: text-2xl-2xl font-bold">
-    //     <Link to="/">CODINGSPACE</Link>
-    //     <p className="hidden xl:block md:block text-sm font-normal">{user.user && user.user.email}</p>
-    //   </div>
-    //   <div className="flex gap-3 items-center">
-    //     <Link to="/" className="hidden md:block xl:block"><GoHome className="text-2xl font-semibold"/></Link>
-    //     <Link to="/dashboard"><FiUser className="text-2xl font-semibold" /></Link>
-    //     <Link to="/addblog" className="hidden md:block xl:block"><IoCreateOutline className="text-2xl font-semibold"/></Link>
-    //     <div className="">
-        // {user.user && user.user ? (
-        //   <Button onClick={handelLogout} variant={"destructive"}>Logout</Button>
-        // ) : (
-        //   <Button><Link to={"/login"} className="px-4 py-2 bg-blue-500 rounded-md text-white">Login</Link></Button>
-        // )}
-    //     </div>
-    //   </div>
-    // </nav>
-    <nav className="p-2 flex justify-between items-center">
+    <nav className="p-2 flex justify-between items-center bg-white">
       {/* left */}
       <div className="flex items-center gap-4">
-        <h1 className="text-white bg-black px-3 py-2 rounded-md w-fit font-bold">
-          CodingSpace
-        </h1>
+        <Link to="/">
+          <h1 className="text-white bg-black px-3 py-2 rounded-md w-fit font-bold">
+            CodingSpace
+          </h1>
+        </Link>
         <div>
           <Input placeholder="Search..." size={80} />
         </div>
@@ -94,13 +78,13 @@ const Navbar = () => {
             <DropdownMenuItem><Link to="/addblog">Create Post</Link></DropdownMenuItem>
             <DropdownMenuItem><Link to="/reading">Reading List</Link></DropdownMenuItem>
             <DropdownMenuItem><Link to="/setting">Settings</Link></DropdownMenuItem>
-            <DropdownMenuSeparator/>
+            <DropdownMenuSeparator />
             <DropdownMenuItem>
-            {user.user && user.user ? (
-              <span onClick={handelLogout}>Logout</span>
-            ) : (
-              <Link to={"/login"}>Login</Link>
-            )}
+              {user.user && user.user ? (
+                <span onClick={handelLogout}>Logout</span>
+              ) : (
+                <Link to={"/login"}>Login</Link>
+              )}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom"
 import { useGetSinglePostQuery } from "../services/blogApi"
+import Loader from "@/components/Loader"
 
 const SingleBlog = () => {
   const {id} = useParams()
   const {data, isFetching} = useGetSinglePostQuery(id || "")
   
   if(isFetching) {
-    return 'Loading...'
+    return <Loader/>
   }
 
   return (
